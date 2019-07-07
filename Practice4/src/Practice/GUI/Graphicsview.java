@@ -199,6 +199,9 @@ public class Graphicsview extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 graph.Clear();
+                drawer.graphList.clear();
+                drawer.edgeDrawer.graph.Clear();
+                drawer.nodeDrawer.graph.Clear();
                 drawer.repaint();
             }
         });

@@ -23,10 +23,14 @@ public class Edge {
         this.endNode = edge.endNode;
         this.count1 = edge.count1;
         this.count2 = edge.count2;
-        //startNode.addListEdge(this);
-        //endNode.addListEdge(this);
+//        startNode.addListEdge(this);
+//        endNode.addListEdge(this);
     }
 
+
+    public Color getColor() {
+        return  this.color;
+    }
 
     public void changeColor(Color color) {
         this.color = color;

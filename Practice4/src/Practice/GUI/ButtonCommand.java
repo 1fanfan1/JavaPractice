@@ -1,6 +1,9 @@
 package Practice.GUI;
 
+import java.awt.*;
 import java.awt.event.*;
+import java.util.LinkedList;
+import java.util.concurrent.TimeUnit;
 
 public abstract class ButtonCommand implements ActionListener {
     public abstract void actionPerformed(ActionEvent e);
@@ -76,6 +79,27 @@ class StartCommand extends ButtonCommand {
         else return 1;
     }
 
+    /**
+     * возвращает список измененных ребер
+     */
+    LinkedList<Edge> changedEdges(Graph prev_graph){
+
+        LinkedList<Edge> list = new LinkedList<>(); // список измененных на данной итерации ребер
+        for (int i = 0; i < prev_graph.edges.size(); i++) {
+            if (prev_graph.edges.get(i).count1 != this.graph.edges.get(i).count1){ // если веса не совпали
+                list.addLast(this.graph.edges.get(i));
+            }
+        }
+
+        return list;
+    }
+
+    void colorEdges(LinkedList<Edge> list, Color color){
+        for (Edge edge : list) {
+            edge.changeColor(color);
+        }
+    }
+
     int maxFlow(int source, int stock)
     {
         flow = new int[result.length][result.length]; // Матрица потока
@@ -88,7 +112,7 @@ class StartCommand extends ButtonCommand {
             for(int j = 0; j < result.length; j++)
                 flow[i][j] = 0;
         }
-        while(bfs(source,stock) == 0)             // Пока существует путь
+        while (bfs(source,stock) == 0)             // Пока существует путь
         {
             int delta = 10000;
             for(int u = result.length - 1; pred[u] >= 0; u = pred[u]) // Найти минимальный поток в сети
@@ -102,12 +126,17 @@ class StartCommand extends ButtonCommand {
             }
             max_flow += delta;                       // Повышаем максимальный поток
 
-            matrixToGraph(); // запишем в граф текущее состояние
+            Graph prev = new Graph(this.graph); // запишем в граф предыдущее состояние
+            matrixToGraph(); // обновим состояние графа
+            drawer.changedEdgeList.addLast(changedEdges(prev)); // сравним состояние графа до и после,
+                                                                // попутно записав изменившиеся ребра
+            colorEdges(drawer.changedEdgeList.getLast(), Color.red); // красим изменившиеся ребра в красный
             drawer.graphList.add(new Graph(this.graph)); // сохраним в список состояний
             drawer.iteration++;
+            drawer.repaint();
         }
 
-        drawer.iteration--; // так как это количесто элементов списка, индекс последнего на 1 меньше
+        drawer.iteration--; // так как это количество элементов списка, индекс последнего на 1 меньше
         return max_flow;
     }
 

@@ -48,7 +48,7 @@ public class EdgeDrawer extends JPanel {
     @Override
     public void paint(Graphics g) {
         for (Edge edge : graph.edges) {
-            g.setColor(Color.BLACK);
+            g.setColor(edge.getColor());
             g.setFont(new Font("Arial", Font.BOLD, edge.getStartNode().getDiameter() / 3));
             g.drawLine(edge.getStartNode().getPosX() + edge.getStartNode().getDiameter() / 2, edge.getStartNode().getPosY() + edge.getStartNode().getDiameter() / 2,
                     edge.getEndNode().getPosX() + edge.getEndNode().getDiameter() / 2, edge.getEndNode().getPosY() + edge.getEndNode().getDiameter() / 2);
