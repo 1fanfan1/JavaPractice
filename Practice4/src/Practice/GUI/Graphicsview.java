@@ -202,6 +202,7 @@ public class Graphicsview extends JFrame {
                 drawer.graphList.clear();
                 drawer.edgeDrawer.graph.Clear();
                 drawer.nodeDrawer.graph.Clear();
+                drawer.iteration = 0;
                 drawer.repaint();
             }
         });

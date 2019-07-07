@@ -128,9 +128,7 @@ class StartCommand extends ButtonCommand {
 
             Graph prev = new Graph(this.graph); // запишем в граф предыдущее состояние
             matrixToGraph(); // обновим состояние графа
-            drawer.changedEdgeList.addLast(changedEdges(prev)); // сравним состояние графа до и после,
-                                                                // попутно записав изменившиеся ребра
-            colorEdges(drawer.changedEdgeList.getLast(), Color.red); // красим изменившиеся ребра в красный
+            colorEdges(changedEdges(prev), Color.red); // красим изменившиеся ребра в красный
             drawer.graphList.add(prev); // сохраним в список состояний
             drawer.iteration++;
             drawer.setGraph(drawer.graphList.getLast());

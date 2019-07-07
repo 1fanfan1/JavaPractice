@@ -8,7 +8,6 @@ import java.util.LinkedList;
 public class GraphDrawer extends JPanel {
     Graph graph;
     LinkedList <Graph> graphList; // список состояний графа на каждой итерации алгоритма
-    LinkedList <LinkedList<Edge>> changedEdgeList; // список списков измененных ребер графа на каждой итерации
 
     int iteration;
 
@@ -20,7 +19,6 @@ public class GraphDrawer extends JPanel {
     public GraphDrawer(Graph _graph) {
         graph = _graph;
         graphList = new LinkedList<>();
-        changedEdgeList = new LinkedList<>();
         iteration = 0;
 
         nodeDrawer = new NodeDrawer(graph);

@@ -42,6 +42,7 @@ public class Graph {
         return edges.remove(edge);
     }
     public  LinkedList<Node> getNodes(){return nodes;}
+
     public void Clear(){
         nodes.clear();
         edges.clear();
