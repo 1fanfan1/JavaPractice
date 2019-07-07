@@ -234,6 +234,8 @@ public class Graphicsview extends JFrame {
             node[result.length - 1] = new Node("1" + (result.length - 1), drawer.getSize().width / 2 - 12, drawer.getSize().height / 2 + 84);
             graph.addNode(node[result.length - 1]);
         }
+        drawer.nodeDrawer.setGraph(graph);
+        drawer.edgeDrawer.setGraph(graph);
         drawer.repaint();
         for (int i = 0; i < result.length; i++)
             for (int j = 0; j < result.length; j++)

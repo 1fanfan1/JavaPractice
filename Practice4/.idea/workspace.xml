@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="50ec1e92-ee74-4264-8962-8dbadf1d1797" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Practice/GUI/ButtonCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Practice/GUI/ButtonCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Practice/GUI/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Practice/GUI/Graph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Practice/GUI/GraphDrawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Practice/GUI/GraphDrawer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Practice/GUI/Graphicsview.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Practice/GUI/Graphicsview.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -24,7 +21,7 @@
         <entry file="file://$PROJECT_DIR$/src/Practice/GUI/Graphicsview.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="144">
-              <caret line="201" column="41" selection-start-line="201" selection-start-column="41" selection-end-line="201" selection-end-column="41" />
+              <caret line="237" column="40" selection-start-line="237" selection-start-column="40" selection-end-line="237" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -238,7 +235,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562540654591" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562540955093" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -515,7 +512,7 @@
     <entry file="file://$PROJECT_DIR$/src/Practice/GUI/Graphicsview.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
-          <caret line="201" column="41" selection-start-line="201" selection-start-column="41" selection-end-line="201" selection-end-column="41" />
+          <caret line="237" column="40" selection-start-line="237" selection-start-column="40" selection-end-line="237" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
