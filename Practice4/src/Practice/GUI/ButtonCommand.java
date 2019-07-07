@@ -82,12 +82,12 @@ class StartCommand extends ButtonCommand {
     /**
      * возвращает список измененных ребер
      */
-    LinkedList<Edge> changedEdges(Graph prev_graph){
+    LinkedList<Edge> changedEdges(Graph prev){
 
         LinkedList<Edge> list = new LinkedList<>(); // список измененных на данной итерации ребер
-        for (int i = 0; i < prev_graph.edges.size(); i++) {
-            if (prev_graph.edges.get(i).count1 != this.graph.edges.get(i).count1){ // если веса не совпали
-                list.addLast(this.graph.edges.get(i));
+        for (int i = 0; i < prev.edges.size(); i++) {
+            if (prev.edges.get(i).count1 != this.graph.edges.get(i).count1){ // если веса не совпали
+                list.addLast(prev.edges.get(i));
             }
         }
 
@@ -131,12 +131,14 @@ class StartCommand extends ButtonCommand {
             drawer.changedEdgeList.addLast(changedEdges(prev)); // сравним состояние графа до и после,
                                                                 // попутно записав изменившиеся ребра
             colorEdges(drawer.changedEdgeList.getLast(), Color.red); // красим изменившиеся ребра в красный
-            drawer.graphList.add(new Graph(this.graph)); // сохраним в список состояний
+            drawer.graphList.add(prev); // сохраним в список состояний
             drawer.iteration++;
+            drawer.setGraph(drawer.graphList.getLast());
             drawer.repaint();
         }
 
         drawer.iteration--; // так как это количество элементов списка, индекс последнего на 1 меньше
+
         return max_flow;
     }
 
