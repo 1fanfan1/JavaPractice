@@ -1,10 +1,18 @@
 # JavaPractice
 Summer Java Practice 2019
 
---Shvetz-- 04.07.2019
-Added Graph
-Added EdgeDrawer
-Added NodeDrawer
+Список того что я поменял:
 
-There's need to delete 'paint' methods
-in Edge and Node classes.
+1) в GraphDrawer, NodeDrawer и EdgeDrawer добавлен
+   метод, устанавливающий ссылку на текущий граф для отрисовки
+   "setGraph"
+2) написан дополнительный конструктор класса Graph,
+   который создает новый граф по переданной ссылке на
+   объект типа Graph (по сути копирует списки node и edge)
+3) написаны слоты для кнопок Next и Prev
+4) производится сохранение состояний графа
+   в функции maxFlow в классе buttonчетотам
+   
+   в конце главного цикла while происходит
+   сохранение в поле graph графа, по нему создается 
+   новый объект, который добавляется в список состояний

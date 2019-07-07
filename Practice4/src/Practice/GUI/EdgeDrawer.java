@@ -16,6 +16,11 @@ public class EdgeDrawer extends JPanel {
     public EdgeDrawer(Graph _graph) {
         graph = _graph;
     }
+
+    public void setGraph(Graph _graph){
+        graph = _graph;
+    }
+
     public int[] Turn (int corn,int x,int y,int cenX,int cenY){
         int  []cord =new int[2];
         cord[0]=(int)((x-cenX)*Math.cos((corn*Math.PI)/180)-(y-cenY)*Math.sin((corn*Math.PI)/180))+cenX;

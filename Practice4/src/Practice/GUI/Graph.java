@@ -13,6 +13,16 @@ public class Graph {
         edges = new LinkedList<Edge>();
     }
 
+    public Graph(Graph graph){
+        this();
+        for (Node node : graph.nodes) {
+            this.nodes.add(node);
+        }
+        for (Edge edge : graph.edges) {
+            this.edges.add(edge);
+        }
+    }
+
     public void addNode(Node _node){
         nodes.add(_node);
     }

@@ -13,6 +13,10 @@ public class NodeDrawer extends JPanel {
         graph = _graph;
     }
 
+    public void setGraph(Graph _graph){
+        graph = _graph;
+    }
+
     /**
      * draws all graph nodes
      */

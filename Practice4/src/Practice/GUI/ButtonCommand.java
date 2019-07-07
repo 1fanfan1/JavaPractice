@@ -9,15 +9,18 @@ public abstract class ButtonCommand implements ActionListener {
 class StartCommand extends ButtonCommand {
     Graph graph;
     GraphDrawer drawer;
+
     final int WHITE = 0;
     final int GREY = 1;
     final int BLACK = 2;
+
     private int[][] flow; // Матрица потока
     private int[] color;      // Цвета для вершин
     private int[] pred;       // Массив пути
     private int head, tail;  // Начало, Конец
     private int[] q;
     public int [][] result;
+
     public StartCommand(Graph graph, GraphDrawer drawer) {
         this.graph = graph;
         this.drawer = drawer;
@@ -85,7 +88,7 @@ class StartCommand extends ButtonCommand {
             for(int j = 0; j < result.length; j++)
                 flow[i][j] = 0;
         }
-        while(bfs(source,stock) == 0)             // Пока сеществует путь
+        while(bfs(source,stock) == 0)             // Пока существует путь
         {
             int delta = 10000;
             for(int u = result.length - 1; pred[u] >= 0; u = pred[u]) // Найти минимальный поток в сети
@@ -98,7 +101,13 @@ class StartCommand extends ButtonCommand {
                 flow[u][pred[u]] -= delta;
             }
             max_flow += delta;                       // Повышаем максимальный поток
+
+            matrixToGraph(); // запишем в граф текущее состояние
+            drawer.graphList.add(new Graph(this.graph)); // сохраним в список состояний
+            drawer.iteration++;
         }
+
+        drawer.iteration--; // так как это количесто элементов списка, индекс последнего на 1 меньше
         return max_flow;
     }
 
@@ -161,19 +170,46 @@ class StartCommand extends ButtonCommand {
         System.out.println(max_flow);
         matrixToGraph();
         drawer.repaint();
+        drawer.updateUI();
     }
 }
 
 
 class PrevCommand extends ButtonCommand {
 
+    GraphDrawer drawer;
+
+    public PrevCommand(GraphDrawer drawer){
+        this.drawer = drawer;
+    }
+
     public void actionPerformed(ActionEvent e) {
+        if (!drawer.graphList.isEmpty()){
+            if (drawer.iteration - 1 >= 0) // меняем индекс состояния в списке
+                --drawer.iteration;
+
+            drawer.setGraph(drawer.graphList.get(drawer.iteration));
+            drawer.repaint();
+        }
 
     }
 }
 
 class NextCommand extends ButtonCommand {
-    public void actionPerformed(ActionEvent e) {
 
+    GraphDrawer drawer;
+
+    public NextCommand(GraphDrawer drawer){
+        this.drawer = drawer;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        if (!drawer.graphList.isEmpty()){
+            if (drawer.iteration + 1 < drawer.graphList.size()) // меняем индекс состояния в списке
+                ++drawer.iteration;
+
+            drawer.setGraph(drawer.graphList.get(drawer.iteration));
+            drawer.repaint();
+        }
     }
 }

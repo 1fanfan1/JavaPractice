@@ -3,9 +3,13 @@ package Practice.GUI;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.LinkedList;
 
 public class GraphDrawer extends JPanel {
     Graph graph;
+    LinkedList <Graph> graphList; // list of graph conditions
+    int iteration;
+
     NodeDrawer nodeDrawer;
     EdgeDrawer edgeDrawer;
     Node node = null;
@@ -13,12 +17,21 @@ public class GraphDrawer extends JPanel {
 
     public GraphDrawer(Graph _graph) {
         graph = _graph;
+        graphList = new LinkedList<>();
+        iteration = 0;
+
         nodeDrawer = new NodeDrawer(graph);
         edgeDrawer = new EdgeDrawer(graph);
         addMouseMotionListener(new MyMove());
         addMouseListener(new MyMouse());
         addMouseWheelListener(new MyMouse());
 
+    }
+
+    public void setGraph(Graph _graph){
+        graph = _graph;
+        nodeDrawer.setGraph(_graph);
+        edgeDrawer.setGraph(_graph);
     }
 
     @Override

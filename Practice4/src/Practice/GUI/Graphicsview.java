@@ -85,11 +85,11 @@ public class Graphicsview extends JFrame {
             }
         });
         panelSlider.add(jSlider);
-        prevButton.addActionListener(new PrevCommand());
+        prevButton.addActionListener(new PrevCommand(drawer));
         panelSlider.add(prevButton);
         counter.setPreferredSize(new Dimension(30, 30));
         panelSlider.add(counter);
-        nextButton.addActionListener(new NextCommand());
+        nextButton.addActionListener(new NextCommand(drawer));
         panelSlider.add(nextButton);
         contaner.add(panelSlider, BorderLayout.SOUTH);
         /**
