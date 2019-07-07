@@ -18,6 +18,15 @@ public class Edge {
         endNode.addListEdge(this);
     }
 
+    public Edge(Edge edge) {
+        this.startNode = edge.startNode;
+        this.endNode = edge.endNode;
+        this.count1 = edge.count1;
+        this.count2 = edge.count2;
+        //startNode.addListEdge(this);
+        //endNode.addListEdge(this);
+    }
+
 
     public void changeColor(Color color) {
         this.color = color;

@@ -16,10 +16,10 @@ public class Graph {
     public Graph(Graph graph){
         this();
         for (Node node : graph.nodes) {
-            this.nodes.add(node);
+            this.nodes.add(new Node(node));
         }
         for (Edge edge : graph.edges) {
-            this.edges.add(edge);
+            this.edges.add(new Edge(edge));
         }
     }
 
