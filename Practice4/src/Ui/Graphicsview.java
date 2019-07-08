@@ -6,8 +6,6 @@ import Model.Graph;
 import Model.Node;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -25,7 +23,9 @@ public class Graphicsview extends JFrame {
     public  JButton startButton = new JButton("Start");
     public JButton goToStart = new JButton("goToStart");
     public JButton goToEnd = new JButton("goToEnd");
-    private JTextField counter = new JTextField();
+
+    public JTextField counter = new JTextField();
+
     private JSlider jSlider;
     private List<Node> listNode = new ArrayList<Node>();
     private Container contaner;
@@ -59,6 +59,7 @@ public class Graphicsview extends JFrame {
         JScrollPane scroll = new JScrollPane(jTextArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         panelText.add(scroll);
         contaner.add(panelText, BorderLayout.LINE_START);
+
         /**
          * Slider and button
          */
@@ -76,14 +77,14 @@ public class Graphicsview extends JFrame {
          */
         goToStart.setEnabled(false);
         goToStart.setIcon(new ImageIcon("src/Recources/Image/icon.jpeg"));
-        goToStart.addActionListener(new goToStartCommand(drawer));
+        goToStart.addActionListener(new goToStartCommand(drawer, counter));
         panelSlider.add(goToStart);
         /**
          *  prevButton
          */
         prevButton.setEnabled(false);
         prevButton.setIcon(new ImageIcon("src/Recources/Image/icon.jpeg"));
-        prevButton.addActionListener(new PrevCommand(drawer));
+        prevButton.addActionListener(new PrevCommand(drawer, counter));
         panelSlider.add(prevButton);
         /**
          *  counter
@@ -96,14 +97,14 @@ public class Graphicsview extends JFrame {
          */
         nextButton.setEnabled(false);
         nextButton.setIcon(new ImageIcon("src/Recources/Image/icon.jpeg"));
-        nextButton.addActionListener(new NextCommand(drawer));
+        nextButton.addActionListener(new NextCommand(drawer, counter));
         panelSlider.add(nextButton);
         /**
          * goToEnd
          */
         goToEnd.setEnabled(false);
         goToEnd.setIcon(new ImageIcon("src/Recources/Image/icon.jpeg"));
-        goToEnd.addActionListener(new goToEndCommand(drawer));
+        goToEnd.addActionListener(new goToEndCommand(drawer, counter));
         panelSlider.add(goToEnd);
 
         contaner.add(panelSlider, BorderLayout.SOUTH);
@@ -212,6 +213,7 @@ public class Graphicsview extends JFrame {
                 drawer.nodeDrawer.graph.Clear();
                 drawer.iteration = 0;
                 drawer.setGraph(graph);
+                counter.setText("");
                 startButton.setEnabled(true);
                 goToEnd.setEnabled(false);
                 goToStart.setEnabled(false);

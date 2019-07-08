@@ -34,37 +34,49 @@ class StartCommand extends ButtonCommand {
         algorithm.matrixToGraph();
        algorithm.drawer.repaint();
        algorithm.drawer.updateUI();
-    }
+       frame.counter.setText("" + frame.drawer.graphList.size() + "/" + frame.drawer.graphList.size());
+   }
 }
 
 
 class PrevCommand extends ButtonCommand {
 
     GraphDrawer drawer;
+    JTextField counter;
 
-    public PrevCommand(GraphDrawer drawer){
+    public PrevCommand(GraphDrawer drawer, JTextField counter) {
         this.drawer = drawer;
+        this.counter = counter;
     }
 
+
     public void actionPerformed(ActionEvent e) {
-        if (!drawer.graphList.isEmpty()){
+        if (!drawer.graphList.isEmpty()) {
             if (drawer.iteration - 1 >= 0) // меняем индекс состояния в списке
                 --drawer.iteration;
 
             drawer.setGraph(drawer.graphList.get(drawer.iteration));
             drawer.repaint();
-        }
 
+            counter.setText("" + (drawer.iteration + 1) + "/" + drawer.graphList.size());
+
+            drawer.setGraph(drawer.graphList.get(drawer.iteration));
+            drawer.repaint();
+        }
     }
 }
+
 
 class NextCommand extends ButtonCommand {
 
     GraphDrawer drawer;
+    JTextField counter;
 
-    public NextCommand(GraphDrawer drawer){
+    public NextCommand(GraphDrawer drawer, JTextField counter) {
         this.drawer = drawer;
+        this.counter = counter;
     }
+
 
     public void actionPerformed(ActionEvent e) {
         if (!drawer.graphList.isEmpty()){
@@ -73,20 +85,33 @@ class NextCommand extends ButtonCommand {
 
             drawer.setGraph(drawer.graphList.get(drawer.iteration));
             drawer.repaint();
+
+            counter.setText("" + (drawer.iteration + 1) + "/" + drawer.graphList.size());
+
         }
     }
 }
 class goToStartCommand extends ButtonCommand {
 
     GraphDrawer drawer;
+    JTextField counter;
 
-    public  goToStartCommand(GraphDrawer drawer){
+
+    public  goToStartCommand(GraphDrawer drawer, JTextField counter) {
         this.drawer = drawer;
+        this.counter = counter;
     }
 
     public void actionPerformed(ActionEvent e) {
         if (!drawer.graphList.isEmpty()){
             drawer.setGraph(drawer.graphList.getFirst());
+
+            drawer.iteration = 0;
+            drawer.repaint();
+
+
+            counter.setText("" + 1 + "/" + drawer.graphList.size());
+
             drawer.repaint();
         }
     }
@@ -94,16 +119,22 @@ class goToStartCommand extends ButtonCommand {
 class  goToEndCommand extends ButtonCommand {
 
     GraphDrawer drawer;
+    JTextField counter;
 
-    public  goToEndCommand(GraphDrawer drawer){
+
+    public  goToEndCommand(GraphDrawer drawer, JTextField counter) {
         this.drawer = drawer;
+        this.counter = counter;
     }
 
     public void actionPerformed(ActionEvent e) {
         if (!drawer.graphList.isEmpty()){
 
             drawer.setGraph(drawer.graphList.getLast());
+            drawer.iteration = drawer.graphList.size() - 1;
             drawer.repaint();
+
+            counter.setText("" + drawer.graphList.size() + "/" + drawer.graphList.size());
         }
     }
 }
