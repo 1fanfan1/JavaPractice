@@ -6,6 +6,7 @@ import Controller.InitNode;
 import Controller.NodeDrawer;
 import Model.Graph;
 import Model.Node;
+import Ui.Graphicsview;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,13 +22,14 @@ public class GraphDrawer extends JPanel {
     public NodeDrawer nodeDrawer;
     public EdgeDrawer edgeDrawer;
     Node node = null;
+    Graphicsview frame;
     private final InitEdge initEdge = new InitEdge(this);
 
-    public GraphDrawer(Graph _graph) {
+    public GraphDrawer(Graph _graph,Graphicsview frame) {
         graph = _graph;
         graphList = new LinkedList<>();
         iteration = 0;
-
+        this.frame=frame;
         nodeDrawer = new NodeDrawer(graph);
         edgeDrawer = new EdgeDrawer(graph);
         addMouseMotionListener(new MyMove());
@@ -79,6 +81,8 @@ public class GraphDrawer extends JPanel {
                 }
                 if (e.getClickCount() > 1 && node != null) {
                     initEdge.addNodetoEdge(node);
+                    if (graph.edges.size()!=0)
+                        frame.startButton.setEnabled(true);
                 }
             }
 

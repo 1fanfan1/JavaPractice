@@ -20,11 +20,11 @@ import java.util.Scanner;
 public class Graphicsview extends JFrame {
     private JMenuBar menuBar = new JMenuBar();
     private JTextArea jTextArea;
-    private JButton prevButton = new JButton("Prev");
-    private JButton nextButton = new JButton("Next");
-    private JButton startButton = new JButton("Start");
-    private JButton goToStart = new JButton("goToStart");
-    private JButton goToEnd = new JButton("goToEnd");
+    public JButton prevButton = new JButton("Prev");
+    public JButton nextButton = new JButton("Next");
+    public  JButton startButton = new JButton("Start");
+    public JButton goToStart = new JButton("goToStart");
+    public JButton goToEnd = new JButton("goToEnd");
     private JTextField counter = new JTextField();
     private JSlider jSlider;
     private List<Node> listNode = new ArrayList<Node>();
@@ -33,7 +33,7 @@ public class Graphicsview extends JFrame {
     private final double pi = 3.14159265359;
     public int[][] result;
     public Graph graph = new Graph();
-    public GraphDrawer drawer = new GraphDrawer(graph);
+    public GraphDrawer drawer = new GraphDrawer(graph,this);
 
 
     public Graphicsview() {
@@ -55,6 +55,7 @@ public class Graphicsview extends JFrame {
         JPanel panelText = new JPanel(new BorderLayout());
         jTextArea = new JTextArea();
         jTextArea.setLineWrap(true);
+        jTextArea.setEditable(false);
         JScrollPane scroll = new JScrollPane(jTextArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         panelText.add(scroll);
         contaner.add(panelText, BorderLayout.LINE_START);
@@ -66,35 +67,41 @@ public class Graphicsview extends JFrame {
         /**
          * start
          */
+        startButton.setEnabled(false);
         startButton.setIcon(new ImageIcon("src/Recources/Image/icon.jpeg"));
-        startButton.addActionListener(new StartCommand(graph, drawer));/*cюда передаешь нужные тебе данные*/
+        startButton.addActionListener(new StartCommand(graph, drawer,this));/*cюда передаешь нужные тебе данные*/
         panelSlider.add(startButton);
         /**
          *   goToStart
          */
+        goToStart.setEnabled(false);
         goToStart.setIcon(new ImageIcon("src/Recources/Image/icon.jpeg"));
         goToStart.addActionListener(new goToStartCommand(drawer));
         panelSlider.add(goToStart);
         /**
          *  prevButton
          */
+        prevButton.setEnabled(false);
         prevButton.setIcon(new ImageIcon("src/Recources/Image/icon.jpeg"));
         prevButton.addActionListener(new PrevCommand(drawer));
         panelSlider.add(prevButton);
         /**
          *  counter
          */
+        counter.setEditable(false);
         counter.setPreferredSize(new Dimension(30, 30));
         panelSlider.add(counter);
         /**
          *  nextButton
          */
+        nextButton.setEnabled(false);
         nextButton.setIcon(new ImageIcon("src/Recources/Image/icon.jpeg"));
         nextButton.addActionListener(new NextCommand(drawer));
         panelSlider.add(nextButton);
         /**
          * goToEnd
          */
+        goToEnd.setEnabled(false);
         goToEnd.setIcon(new ImageIcon("src/Recources/Image/icon.jpeg"));
         goToEnd.addActionListener(new goToEndCommand(drawer));
         panelSlider.add(goToEnd);
@@ -205,6 +212,12 @@ public class Graphicsview extends JFrame {
                 drawer.nodeDrawer.graph.Clear();
                 drawer.iteration = 0;
                 drawer.setGraph(graph);
+                startButton.setEnabled(true);
+                goToEnd.setEnabled(false);
+                goToStart.setEnabled(false);
+                nextButton.setEnabled(false);
+                prevButton.setEnabled(false);
+                startButton.setEnabled(false);
                 drawer.repaint();
             }
         });
@@ -212,6 +225,7 @@ public class Graphicsview extends JFrame {
     }
 
     private void DrawGraph() {
+        this.startButton.setEnabled(true);
         Node[] node = new Node[result.length];
         float alpha = 360 / result.length;
         float radius = 100;

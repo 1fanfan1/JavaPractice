@@ -5,6 +5,7 @@ import Model.Edge;
 import Model.FordFulkerson;
 import Model.Graph;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.LinkedList;
@@ -15,11 +16,18 @@ public abstract class ButtonCommand implements ActionListener {
 
 class StartCommand extends ButtonCommand {
      FordFulkerson algorithm;
-     public   StartCommand(Graph graph,GraphDrawer drawer){
+     Graphicsview frame;
+     public   StartCommand(Graph graph, GraphDrawer drawer, Graphicsview frame){
          algorithm=new FordFulkerson(graph,drawer);
+         this.frame=frame;
 
      }
     public void actionPerformed(ActionEvent e) {
+        frame.goToStart.setEnabled(true);
+        frame.goToEnd.setEnabled(true);
+        frame.nextButton.setEnabled(true);
+        frame.prevButton.setEnabled(true);
+        frame.startButton.setEnabled(false);
         algorithm.graphToMatrix();
         int max_flow = algorithm.maxFlow(0, algorithm.result.length - 1);
         System.out.println(max_flow);
