@@ -23,6 +23,8 @@ public class Graphicsview extends JFrame {
     private JButton prevButton = new JButton("Prev");
     private JButton nextButton = new JButton("Next");
     private JButton startButton = new JButton("Start");
+    private JButton goToStart = new JButton("goToStart");
+    private JButton goToEnd = new JButton("goToEnd");
     private JTextField counter = new JTextField();
     private JSlider jSlider;
     private List<Node> listNode = new ArrayList<Node>();
@@ -38,28 +40,6 @@ public class Graphicsview extends JFrame {
         super("Ford–Fulkerson");
         setSize(600, 400);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       /* this.addWindowStateListener(new WindowStateListener() {
-            @Override
-            public void windowStateChanged(WindowEvent e) {
-                int xCentr=drawer.sizeWindow.x/2;
-                int yCentr=drawer.sizeWindow.y/2;
-                for (Node node:graph.getNodes()){
-                        node.setPosX(node.getPosX()-xCentr+(drawer.getSize().width/2));
-                        node.setPosY(node.getPosY()-yCentr+(drawer.getSize().height/2));
-                }
-                drawer.repaint();
-                System.out.println(drawer.getSize().width/2);
-                System.out.println(drawer.getSize().height/2);
-                System.out.println(xCentr);
-                System.out.println(yCentr);
-                System.out.println();
-
-
-                drawer.sizeWindow=new Point(drawer.getSize().width,drawer.getSize().height);
-
-            }
-        });*/
-
         contaner = this.getContentPane();
         contaner.setLayout(new BorderLayout());
         /**
@@ -81,29 +61,45 @@ public class Graphicsview extends JFrame {
         /**
          * Slider and button
          */
-        jSlider = new JSlider(JSlider.HORIZONTAL, 0, 100, 0);
-        JPanel panelSlider = new JPanel();
-        jSlider.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
 
-            }
-        });
-        panelSlider.add(jSlider);
+        JPanel panelSlider = new JPanel();
+        /**
+         * start
+         */
+        startButton.setIcon(new ImageIcon("/Users/user/Downloads/i.ZbDPc.jpeg"));
+        startButton.addActionListener(new StartCommand(graph, drawer));/*cюда передаешь нужные тебе данные*/
+        panelSlider.add(startButton);
+        /**
+         *   goToStart
+         */
+        goToStart.setIcon(new ImageIcon("/Users/user/Downloads/i.ZbDPc.jpeg"));
+        goToStart.addActionListener(new goToStartCommand(drawer));
+        panelSlider.add(goToStart);
+        /**
+         *  prevButton
+         */
+        prevButton.setIcon(new ImageIcon("/Users/user/Downloads/i.ZbDPc.jpeg"));
         prevButton.addActionListener(new PrevCommand(drawer));
         panelSlider.add(prevButton);
+        /**
+         *  counter
+         */
         counter.setPreferredSize(new Dimension(30, 30));
         panelSlider.add(counter);
+        /**
+         *  nextButton
+         */
+        nextButton.setIcon(new ImageIcon("/Users/user/Downloads/i.ZbDPc.jpeg"));
         nextButton.addActionListener(new NextCommand(drawer));
         panelSlider.add(nextButton);
-        contaner.add(panelSlider, BorderLayout.SOUTH);
         /**
-         *  button start
+         * goToEnd
          */
-        JPanel panelStart = new JPanel(new BorderLayout());
-        startButton.addActionListener(new StartCommand(graph, drawer));/*cюда передаешь нужные тебе данные*/
-        panelStart.add(startButton);
-        contaner.add(panelStart, BorderLayout.NORTH);
+        goToEnd.setIcon(new ImageIcon("/Users/user/Downloads/i.ZbDPc.jpeg"));
+        goToEnd.addActionListener(new goToEndCommand(drawer));
+        panelSlider.add(goToEnd);
+
+        contaner.add(panelSlider, BorderLayout.SOUTH);
         /**
          * graph
          */
