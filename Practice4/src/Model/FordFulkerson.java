@@ -1,6 +1,7 @@
 package Model;
 
 import Controller.GraphDrawer;
+import Ui.Graphicsview;
 
 import java.awt.*;
 import java.util.LinkedList;
@@ -8,10 +9,11 @@ import java.util.LinkedList;
 public class FordFulkerson {
    public Graph graph;
    public GraphDrawer drawer;
-
+   Graphicsview frame;
     final int WHITE = 0;
     final int GREY = 1;
     final int BLACK = 2;
+
 
     private int[][] flow; // Матрица потока
     private int[] color;      // Цвета для вершин
@@ -20,9 +22,10 @@ public class FordFulkerson {
     private int[] q;
     public int [][] result;
 
-    public FordFulkerson(Graph graph, GraphDrawer drawer) {
+    public FordFulkerson(Graph graph, GraphDrawer drawer, Graphicsview frame) {
         this.graph = graph;
         this.drawer = drawer;
+        this.frame=frame;
     }
 
     private int min(int x, int y)
@@ -89,7 +92,15 @@ public class FordFulkerson {
 
         return list;
     }
+   void  setLog(LinkedList<Edge> list){
+       String log="";
+       for (Edge edge : list) {
+          log+=edge.getStartNode().getName()+"-("+edge.getWeight()+"|"+edge.getBandwidth()+")->";
+       }
+       log+=list.getLast().getEndNode().getName();
+       frame.logString.addString(log);
 
+   }
     void colorEdges(LinkedList<Edge> list, Color color){
         for (Edge edge : list) {
             edge.changeColor(color);
@@ -125,6 +136,7 @@ public class FordFulkerson {
             Graph prev = new Graph(this.graph); // запишем в граф предыдущее состояние
             matrixToGraph(); // обновим состояние графа
             colorEdges(changedEdges(prev), Color.ORANGE); // красим изменившиеся ребра в красный
+            setLog(changedEdges(prev));
             drawer.graphList.add(prev); // сохраним в список состояний
             drawer.iteration++;
             drawer.setGraph(drawer.graphList.getLast());

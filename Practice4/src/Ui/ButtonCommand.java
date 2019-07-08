@@ -15,13 +15,15 @@ public abstract class ButtonCommand implements ActionListener {
 }
 
 class StartCommand extends ButtonCommand {
-     FordFulkerson algorithm;
-     Graphicsview frame;
-     public   StartCommand(Graph graph, GraphDrawer drawer, Graphicsview frame){
-         algorithm=new FordFulkerson(graph,drawer);
-         this.frame=frame;
+    FordFulkerson algorithm;
+    Graphicsview frame;
 
-     }
+    public StartCommand(Graph graph, GraphDrawer drawer, Graphicsview frame) {
+        algorithm = new FordFulkerson(graph, drawer, frame);
+        this.frame = frame;
+
+    }
+
     public void actionPerformed(ActionEvent e) {
         frame.goToStart.setEnabled(true);
         frame.goToEnd.setEnabled(true);
@@ -32,21 +34,21 @@ class StartCommand extends ButtonCommand {
         int max_flow = algorithm.maxFlow(0, algorithm.result.length - 1);
         System.out.println(max_flow);
         algorithm.matrixToGraph();
-       algorithm.drawer.repaint();
-       algorithm.drawer.updateUI();
-       frame.counter.setText("" + frame.drawer.graphList.size() + "/" + frame.drawer.graphList.size());
-   }
+        algorithm.drawer.repaint();
+        algorithm.drawer.updateUI();
+        frame.counter.setText("" + frame.drawer.graphList.size() + "/" + frame.drawer.graphList.size());
+        frame.logString.chengeTextLog(frame.drawer.graphList.size()-1);
+    }
 }
 
 
 class PrevCommand extends ButtonCommand {
-
     GraphDrawer drawer;
-    JTextField counter;
+    Graphicsview frame;
 
-    public PrevCommand(GraphDrawer drawer, JTextField counter) {
+    public PrevCommand(GraphDrawer drawer, Graphicsview frame) {
         this.drawer = drawer;
-        this.counter = counter;
+        this.frame = frame;
     }
 
 
@@ -58,7 +60,9 @@ class PrevCommand extends ButtonCommand {
             drawer.setGraph(drawer.graphList.get(drawer.iteration));
             drawer.repaint();
 
-            counter.setText("" + (drawer.iteration + 1) + "/" + drawer.graphList.size());
+            frame.counter.setText("" + (drawer.iteration + 1) + "/" + drawer.graphList.size());
+            frame.logString.chengeTextLog(drawer.iteration);
+
 
             drawer.setGraph(drawer.graphList.get(drawer.iteration));
             drawer.repaint();
@@ -70,71 +74,75 @@ class PrevCommand extends ButtonCommand {
 class NextCommand extends ButtonCommand {
 
     GraphDrawer drawer;
-    JTextField counter;
+    Graphicsview frame;
 
-    public NextCommand(GraphDrawer drawer, JTextField counter) {
+    public NextCommand(GraphDrawer drawer, Graphicsview frame) {
         this.drawer = drawer;
-        this.counter = counter;
+        this.frame = frame;
     }
 
 
+
     public void actionPerformed(ActionEvent e) {
-        if (!drawer.graphList.isEmpty()){
+        if (!drawer.graphList.isEmpty()) {
             if (drawer.iteration + 1 < drawer.graphList.size()) // меняем индекс состояния в списке
                 ++drawer.iteration;
 
             drawer.setGraph(drawer.graphList.get(drawer.iteration));
             drawer.repaint();
 
-            counter.setText("" + (drawer.iteration + 1) + "/" + drawer.graphList.size());
+            frame.counter.setText("" + (drawer.iteration + 1) + "/" + drawer.graphList.size());
+            frame.logString.chengeTextLog(drawer.iteration);
 
         }
     }
 }
+
 class goToStartCommand extends ButtonCommand {
 
     GraphDrawer drawer;
-    JTextField counter;
+    Graphicsview frame;
 
-
-    public  goToStartCommand(GraphDrawer drawer, JTextField counter) {
+    public goToStartCommand(GraphDrawer drawer, Graphicsview frame) {
         this.drawer = drawer;
-        this.counter = counter;
+        this.frame = frame;
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (!drawer.graphList.isEmpty()){
+        if (!drawer.graphList.isEmpty()) {
             drawer.setGraph(drawer.graphList.getFirst());
 
             drawer.iteration = 0;
             drawer.repaint();
 
 
-            counter.setText("" + 1 + "/" + drawer.graphList.size());
+            frame.counter.setText("" + 1 + "/" + drawer.graphList.size());
+            frame.logString.chengeTextLog(0);
 
             drawer.repaint();
         }
     }
 }
-class  goToEndCommand extends ButtonCommand {
+
+class goToEndCommand extends ButtonCommand {
 
     GraphDrawer drawer;
-    JTextField counter;
+    Graphicsview frame;
 
-
-    public  goToEndCommand(GraphDrawer drawer, JTextField counter) {
+    public goToEndCommand(GraphDrawer drawer, Graphicsview frame) {
         this.drawer = drawer;
-        this.counter = counter;
+        this.frame = frame;
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (!drawer.graphList.isEmpty()){
+        if (!drawer.graphList.isEmpty()) {
 
             drawer.setGraph(drawer.graphList.getLast());
             drawer.iteration = drawer.graphList.size() - 1;
             drawer.repaint();
 
-            counter.setText("" + drawer.graphList.size() + "/" + drawer.graphList.size());
+            frame.counter.setText("" + drawer.graphList.size() + "/" + drawer.graphList.size());
+            frame.logString.chengeTextLog(drawer.graphList.size()-1);
         }
     }
 }

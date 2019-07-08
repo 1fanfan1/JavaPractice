@@ -1,11 +1,15 @@
 package Ui;
 
 import Controller.GraphDrawer;
+import Controller.LogString;
 import Model.Edge;
 import Model.Graph;
 import Model.Node;
 
 import javax.swing.*;
+import javax.swing.event.AncestorListener;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -17,15 +21,13 @@ import java.util.Scanner;
 
 public class Graphicsview extends JFrame {
     private JMenuBar menuBar = new JMenuBar();
-    private JTextArea jTextArea;
+    public JTextArea jTextArea;
     public JButton prevButton = new JButton("Prev");
     public JButton nextButton = new JButton("Next");
     public  JButton startButton = new JButton("Start");
     public JButton goToStart = new JButton("goToStart");
     public JButton goToEnd = new JButton("goToEnd");
-
     public JTextField counter = new JTextField();
-
     private JSlider jSlider;
     private List<Node> listNode = new ArrayList<Node>();
     private Container contaner;
@@ -34,6 +36,7 @@ public class Graphicsview extends JFrame {
     public int[][] result;
     public Graph graph = new Graph();
     public GraphDrawer drawer = new GraphDrawer(graph,this);
+    public LogString logString;
 
 
     public Graphicsview() {
@@ -54,12 +57,13 @@ public class Graphicsview extends JFrame {
          */
         JPanel panelText = new JPanel(new BorderLayout());
         jTextArea = new JTextArea();
+        jTextArea.setSize(200,100);
         jTextArea.setLineWrap(true);
         jTextArea.setEditable(false);
+        logString=new LogString(jTextArea);
         JScrollPane scroll = new JScrollPane(jTextArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         panelText.add(scroll);
         contaner.add(panelText, BorderLayout.LINE_START);
-
         /**
          * Slider and button
          */
@@ -77,34 +81,34 @@ public class Graphicsview extends JFrame {
          */
         goToStart.setEnabled(false);
         goToStart.setIcon(new ImageIcon("src/Recources/Image/icon.jpeg"));
-        goToStart.addActionListener(new goToStartCommand(drawer, counter));
+        goToStart.addActionListener(new goToStartCommand(drawer,this));
         panelSlider.add(goToStart);
         /**
          *  prevButton
          */
         prevButton.setEnabled(false);
         prevButton.setIcon(new ImageIcon("src/Recources/Image/icon.jpeg"));
-        prevButton.addActionListener(new PrevCommand(drawer, counter));
+        prevButton.addActionListener(new PrevCommand(drawer,this));
         panelSlider.add(prevButton);
         /**
          *  counter
          */
         counter.setEditable(false);
-        counter.setPreferredSize(new Dimension(30, 30));
+        counter.setPreferredSize(new Dimension(45, 30));
         panelSlider.add(counter);
         /**
          *  nextButton
          */
         nextButton.setEnabled(false);
         nextButton.setIcon(new ImageIcon("src/Recources/Image/icon.jpeg"));
-        nextButton.addActionListener(new NextCommand(drawer, counter));
+        nextButton.addActionListener(new NextCommand(drawer,this));
         panelSlider.add(nextButton);
         /**
          * goToEnd
          */
         goToEnd.setEnabled(false);
         goToEnd.setIcon(new ImageIcon("src/Recources/Image/icon.jpeg"));
-        goToEnd.addActionListener(new goToEndCommand(drawer, counter));
+        goToEnd.addActionListener(new goToEndCommand(drawer,this));
         panelSlider.add(goToEnd);
 
         contaner.add(panelSlider, BorderLayout.SOUTH);
@@ -213,13 +217,15 @@ public class Graphicsview extends JFrame {
                 drawer.nodeDrawer.graph.Clear();
                 drawer.iteration = 0;
                 drawer.setGraph(graph);
-                counter.setText("");
                 startButton.setEnabled(true);
                 goToEnd.setEnabled(false);
                 goToStart.setEnabled(false);
                 nextButton.setEnabled(false);
                 prevButton.setEnabled(false);
                 startButton.setEnabled(false);
+                jTextArea.setText("");
+                logString.list.clear();
+
                 drawer.repaint();
             }
         });
