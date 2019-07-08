@@ -66,19 +66,19 @@ public class Graphicsview extends JFrame {
         /**
          * start
          */
-        startButton.setIcon(new ImageIcon("/Users/user/Downloads/i.ZbDPc.jpeg"));
+        startButton.setIcon(new ImageIcon("src/Recources/Image/icon.jpeg"));
         startButton.addActionListener(new StartCommand(graph, drawer));/*cюда передаешь нужные тебе данные*/
         panelSlider.add(startButton);
         /**
          *   goToStart
          */
-        goToStart.setIcon(new ImageIcon("/Users/user/Downloads/i.ZbDPc.jpeg"));
+        goToStart.setIcon(new ImageIcon("src/Recources/Image/icon.jpeg"));
         goToStart.addActionListener(new goToStartCommand(drawer));
         panelSlider.add(goToStart);
         /**
          *  prevButton
          */
-        prevButton.setIcon(new ImageIcon("/Users/user/Downloads/i.ZbDPc.jpeg"));
+        prevButton.setIcon(new ImageIcon("src/Recources/Image/icon.jpeg"));
         prevButton.addActionListener(new PrevCommand(drawer));
         panelSlider.add(prevButton);
         /**
@@ -89,13 +89,13 @@ public class Graphicsview extends JFrame {
         /**
          *  nextButton
          */
-        nextButton.setIcon(new ImageIcon("/Users/user/Downloads/i.ZbDPc.jpeg"));
+        nextButton.setIcon(new ImageIcon("src/Recources/Image/icon.jpeg"));
         nextButton.addActionListener(new NextCommand(drawer));
         panelSlider.add(nextButton);
         /**
          * goToEnd
          */
-        goToEnd.setIcon(new ImageIcon("/Users/user/Downloads/i.ZbDPc.jpeg"));
+        goToEnd.setIcon(new ImageIcon("src/Recources/Image/icon.jpeg"));
         goToEnd.addActionListener(new goToEndCommand(drawer));
         panelSlider.add(goToEnd);
 
