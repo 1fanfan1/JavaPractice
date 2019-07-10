@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="50ec1e92-ee74-4264-8962-8dbadf1d1797" name="Default Changelist" comment="" />
+    <list default="true" id="50ec1e92-ee74-4264-8962-8dbadf1d1797" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Новая папка/src/main/java/Controller/DialogView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Новая папка/src/main/java/Controller/EdgeDrawer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Новая папка/src/main/java/Controller/GraphDrawer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Новая папка/src/main/java/Controller/LogString.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Новая папка/src/main/java/Controller/NodeDrawer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Новая папка/src/main/java/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Новая папка/src/main/java/Model/Edge.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Новая папка/src/main/java/Model/FordFulkerson.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Новая папка/src/main/java/Model/Graph.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Новая папка/src/main/java/Model/Node.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Новая папка/src/main/java/Ui/ButtonCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Новая папка/src/main/java/Ui/Graphicsview.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Новая папка/src/main/java/Ui/HelpMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Новая папка/src/main/resources/Image/icon.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Новая папка/src/main/resources/Test/test1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Новая папка/src/main/resources/Test/test2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Новая папка/src/main/resources/Test/test3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Новая папка/src/test/java/Model/FordFulkersonTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Новая папка/src/test/java/Model/GraphTest.java" beforeDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
